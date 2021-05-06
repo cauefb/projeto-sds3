@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.dsvendas.dto.SaleDTO;
-
+import com.devsuperior.dsvendas.dto.SaleSuccessDTO;
+import com.devsuperior.dsvendas.dto.SalesSumDTO;
 import com.devsuperior.dsvendas.service.SaleService;
 
 @RestController
@@ -24,6 +25,17 @@ public class SaleController {
 	@GetMapping
 	public ResponseEntity<Page<SaleDTO>> findAll(Pageable pageable){
 		Page<SaleDTO> list = service.findAll(pageable);
+		return ResponseEntity.ok(list);
+	}
+	
+	@GetMapping(value="/amount-by-seller")
+	public ResponseEntity<List<SalesSumDTO>> amountGroupeBySeller(){
+		List<SalesSumDTO> list = service.amountGroupeBySeller();
+		return ResponseEntity.ok(list);
+	}
+	@GetMapping(value="/success-by-seller")
+	public ResponseEntity<List<SaleSuccessDTO>> successGroupeBySeller(){
+		List<SaleSuccessDTO> list = service.successGroupeBySeller();
 		return ResponseEntity.ok(list);
 	}
 	
