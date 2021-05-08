@@ -10,7 +10,7 @@ type ChartData = {
   series: number[];
 };
 
-function DonutChart() {
+const DonutChart = () => {
   const [chartData, setChartData] = useState<ChartData>({
     labels: [],
     series: [],
@@ -45,6 +45,6 @@ function DonutChart() {
       height="240"
     />
   );
-}
+};
 
 export default DonutChart;
